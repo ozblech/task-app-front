@@ -1,26 +1,28 @@
 {
   "files": {
     "main.css": "/task-app-front/static/css/main.5a8ab511.chunk.css",
-    "main.js": "/task-app-front/static/js/main.3c75325a.chunk.js",
-    "main.js.map": "/task-app-front/static/js/main.3c75325a.chunk.js.map",
+    "main.js": "/task-app-front/static/js/main.a6dfef6a.chunk.js",
+    "main.js.map": "/task-app-front/static/js/main.a6dfef6a.chunk.js.map",
     "runtime-main.js": "/task-app-front/static/js/runtime-main.52bbfe7c.js",
     "runtime-main.js.map": "/task-app-front/static/js/runtime-main.52bbfe7c.js.map",
     "static/css/2.3b6f1bda.chunk.css": "/task-app-front/static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.f51b14a9.chunk.js": "/task-app-front/static/js/2.f51b14a9.chunk.js",
-    "static/js/2.f51b14a9.chunk.js.map": "/task-app-front/static/js/2.f51b14a9.chunk.js.map",
+    "static/js/2.b348627d.chunk.js": "/task-app-front/static/js/2.b348627d.chunk.js",
+    "static/js/2.b348627d.chunk.js.map": "/task-app-front/static/js/2.b348627d.chunk.js.map",
     "index.html": "/task-app-front/index.html",
-    "precache-manifest.de3e60a9414e08ee9a0e54b8a1fc7795.js": "/task-app-front/precache-manifest.de3e60a9414e08ee9a0e54b8a1fc7795.js",
+    "precache-manifest.9094a63e42b8c350bd9cb62c20ed8d16.js": "/task-app-front/precache-manifest.9094a63e42b8c350bd9cb62c20ed8d16.js",
     "service-worker.js": "/task-app-front/service-worker.js",
     "static/css/2.3b6f1bda.chunk.css.map": "/task-app-front/static/css/2.3b6f1bda.chunk.css.map",
     "static/css/main.5a8ab511.chunk.css.map": "/task-app-front/static/css/main.5a8ab511.chunk.css.map",
-    "static/js/2.f51b14a9.chunk.js.LICENSE.txt": "/task-app-front/static/js/2.f51b14a9.chunk.js.LICENSE.txt",
-    "static/media/anonymous.png": "/task-app-front/static/media/anonymous.31cb6acd.png"
+    "static/js/2.b348627d.chunk.js.LICENSE.txt": "/task-app-front/static/js/2.b348627d.chunk.js.LICENSE.txt",
+    "static/media/Add.png": "/task-app-front/static/media/Add.006522fe.png",
+    "static/media/anonymous.png": "/task-app-front/static/media/anonymous.31cb6acd.png",
+    "static/media/completed.png": "/task-app-front/static/media/completed.6afd2373.png"
   },
   "entrypoints": [
     "static/js/runtime-main.52bbfe7c.js",
     "static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.f51b14a9.chunk.js",
+    "static/js/2.b348627d.chunk.js",
     "static/css/main.5a8ab511.chunk.css",
-    "static/js/main.3c75325a.chunk.js"
+    "static/js/main.a6dfef6a.chunk.js"
   ]
 }
