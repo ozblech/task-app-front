@@ -2,10 +2,10 @@ import React from 'react'
 import editImg from './edit.png'
 import completedImg from './completed.png'
 
-const Task = ({ description, completed }) => {
+const Task = ({ description, completed , _id, editTask}) => {
 
 	return (
-		<div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 shadow-5'>
+		<div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 w-40 shadow-5'>
 			<div>
 				<h2>{description}</h2>
 				{
@@ -17,11 +17,15 @@ const Task = ({ description, completed }) => {
 				}
 			</div>
 			<div className = 'f5 flex justify-between'>
-				<div className='edit flex justify-center'>
+				<div className='edit flex justify-center items-center'>
 					<p>Edit</p>
-					<img alt='' src = {editImg} width = "20px"/>
+					<img 
+					className='link pointer' 
+					alt='' src = {editImg} width = "20px"
+					onClick={() => editTask(_id, description)}
+					/>
 				</div>
-				<div className='completed flex justify-center'>
+				<div className='completed flex justify-center items-center'>
 					<p>Completed</p>
 					<img alt='' src = {completedImg} width = "20px"/>
 				</div>

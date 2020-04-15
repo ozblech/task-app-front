@@ -17,7 +17,7 @@ class Photo extends React.Component {
 
 	getUserAvatar = async() => {
 		const user = this.props.user
-		// console.log(user._id)
+		console.log('user token', user.token)
 		try {
 			await fetch(`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`, {
 			method: 'get',
