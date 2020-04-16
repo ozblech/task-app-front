@@ -22,8 +22,16 @@ class EditTaskForm extends React.Component {
 
 
 	onSubmitEdit = () => {
-		const { user, newDescription, taskToEditId } = this.state
-		console.log('token is', user.token)
+		const { user, newDescription, taskToEditId, toggleTaskComplete } = this.state
+		const patchBody = (toggleTaskComplete) ?
+			({
+				completed : !this.props.completed
+			})
+			:
+			({
+				description: newDescription
+			})
+
 		fetch(`https://blech-task-manager.herokuapp.com/tasks/${taskToEditId}`, {
 			method: 'PATCH',
 			headers: {
@@ -31,13 +39,10 @@ class EditTaskForm extends React.Component {
 				Authorization: `Bearer ${user.token}`
 			},
 
-			body: JSON.stringify({
-				description: newDescription
-			})
+			body: JSON.stringify(patchBody)
 		})
 		.then(response=> response.json())
 		.then(jsonData=> {
-			console.log('add task: ', jsonData)
 			if (jsonData.description) {
 				this.props.getUserTasks()
 			}
@@ -51,7 +56,7 @@ class EditTaskForm extends React.Component {
 
 	render() {
 		return (
-			<div className="pa4 black-80 flex justify-center">
+			<div className="pa4 black-80 flex justify-center center">
 			  <div className="measure ">
 			  	{
 			  	(this.props.toggleTaskComplete)

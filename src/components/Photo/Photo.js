@@ -9,7 +9,8 @@ class Photo extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			avatar: false
+			avatar: false,
+			changePhoto: false
 		}
 		
 	}
@@ -17,7 +18,6 @@ class Photo extends React.Component {
 
 	getUserAvatar = async() => {
 		const user = this.props.user
-		console.log('user token', user.token)
 		try {
 			await fetch(`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`, {
 			method: 'get',
@@ -41,7 +41,6 @@ class Photo extends React.Component {
 
 
 	onPhotoChangeClick = () => {
-		// console.log(document.querySelector('#myfile').files[0])
 		const fileInput = document.querySelector('#myfile').files[0]
 		const formData = new FormData()
 		formData.append('avatar', fileInput)
@@ -54,7 +53,10 @@ class Photo extends React.Component {
 		})
 		.then(response => {
 			if(response.status === 200) {
-			this.setState({avatar: true})
+			this.setState({
+				avatar: true,
+				changePhoto: false
+				})
 			}
 		})
 	}
@@ -66,44 +68,90 @@ class Photo extends React.Component {
 				Authorization: `Bearer ${this.props.user.token}`
 			}
 		})
-		this.setState({avatar: false})
+		this.setState({
+			avatar: false,
+			changePhoto: false
+		})
 
 	}
 
-	render() {
+	changePhotoToggle = (trueOrFalse) => {
+		(trueOrFalse)
+		?
+		this.setState({changePhoto: true})
+		:
+		this.setState({changePhoto: false})
+	}
+
+	showUserAvater = () => {
 		const { user } = this.props
 		return (
-			<div>
-				{
-					(this.state.avatar) 
-					? 
-					<img alt='' 
-					src = {`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`} 
-					width='300px' height='auto'/>
-					:
-					<img alt='' 
-					src = {anonymous} 
-					width='300px' height='auto'/>
-				}
-				
-				<br/>
-				<form className='center f5 ph3 pv white' action="/action_page.php">
-				  <input type="file" id="myfile" name="myfile" /><br/>
-				</form>
-				<div className='flex justify-center '>
-					<button 
-					className='outline w-20 ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			(this.state.avatar)
+			? 
+			<img alt='' className='pointer grow'
+			src = {`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`} 
+			width='300px' height='auto'
+			onClick={() => this.changePhotoToggle(true)}
+			/>
+			:
+			<img alt='' className='pointer grow'
+			src = {anonymous} 
+			width='300px' height='auto'
+			onClick={() => this.changePhotoToggle(true)}
+			/>
+		)
+	}
+
+	showChangePhotoForm = () => {
+
+		return (
+			<div className='tc bg-blue dib br3 pa1 ma4 grow bw2 w-30 o-90 shadow-5'>
+				<div>
+				<h4>
+					<form className='f5 white ma4' action="/action_page.php">
+				  	<input type="file" id="myfile" name="myfile" />
+					</form>
+				</h4>
+				</div>
+
+				<div>
+				<p>
+					<button
+					className='outline w-15 f6 link dim ph3 pv2 mb2 dib white bg-dark-blue'
 					type='submit'
 					onClick={this.onPhotoChangeClick}
 					>Update Photo</button>
 					<button 
-					className='outline w-20 f6 ph3 link dim ph3 pv2 mb2 dib white bg-dark-pink'
+					className='outline w-15 f6 link dim ph3 pv2 mb2 dib white bg-dark-pink'
 					type='delete'
 					onClick={this.onPhotoDeleteClick}
 					>Delete Photo</button>
+					<button 
+					className='outline w-15 f6 link dim ph3 pv2 mb2 dib white bg-dark-blue'
+					type='cancel'
+					onClick={() => this.changePhotoToggle(false)}
+					>Cancel</button>
+				</p>
 				</div>
-				
+		</div>
+		
+		)
+	}
+
+	render() {
+		const { user } = this.props
+		console.log('show changephoto?',this.state.changePhoto)
+		return (
+			<div className='center '>
+				{
+					(this.state.changePhoto)
+					?
+					this.showChangePhotoForm()
+					:
+					this.showUserAvater()								
+				}
 			</div>
+	
 		);
 	}
 	

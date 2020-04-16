@@ -121,10 +121,11 @@ class App extends Component {
         />
       <Navigation onRouteChange={this.onRouteChange} isLoggedIn={isLoggedIn} />
       {(route === 'home') ? 
-        <div>
+        <div className='center'>
           <Profile 
           onRouteChange={this.onRouteChange} 
           user = {this.state.user} 
+          loadUser = {this.loadUser}
           />
         </div>
       : (route === 'signin') ? 

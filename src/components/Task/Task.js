@@ -14,7 +14,7 @@ const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
 				{
 					(completed) 
 					?
-					<p>completed</p>
+					<p className = 'dark-blue b'>completed!</p>
 					:
 					<p>{completed}</p>
 				}
@@ -30,23 +30,23 @@ const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
 				</div>
 				<div className='completed flex justify-center items-center'>
 					<p>Completed</p>
-				</div>
-				{
-				(!completed)
-				?
-				<img 
-				className='link pointer' 
-				alt='' src = {notCompletedImg} width = "20px"
-				onClick={() => editTaskPageOnOff(true, _id, description, true)}
-				/>
-				:
-				<img 
-				className='link pointer' 
-				alt='' src = {completedImg} width = "20px"
-				onClick={() => editTaskPageOnOff(true, _id, description, true)}
-				/>
-				}
+					{
+					(!completed)
+					?
+					<img 
+					className='link pointer' 
+					alt='' src = {notCompletedImg} width = "20px"
+					onClick={() => editTaskPageOnOff(true, _id, description, true)}
+					/>
+					:
+					<img 
+					className='link pointer' 
+					alt='' src = {completedImg} width = "20px"
+					onClick={() => editTaskPageOnOff(true, _id, description, true)}
+					/>
+					}
 
+				</div>
 			</div>
 		</div>
 	);

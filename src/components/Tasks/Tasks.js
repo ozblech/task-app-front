@@ -74,14 +74,6 @@ class Tasks extends React.Component {
 		this.getUserTasks()
 	}
 
-	// editTask = (_id, description) => {
-	// 	console.log('task id is: ',_id)
-	// 	this.setState({
-	// 		taskToEditId: _id,
-	// 		editTaskPage: true,
-	// 		editingTaskDesc: description
-	// 	})
-	// }
 
 	displayAllTasks = () => {
 		const {tasks} = this.state 
