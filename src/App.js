@@ -46,13 +46,13 @@ const particlesParams = {
   }
 }
 
-const emptyUser = {
-  id: '',
-  name: '',
-  email: '',
-  age: '',
-  createdAt: ''
-}
+// const emptyUser = {
+//   id: '',
+//   name: '',
+//   email: '',
+//   age: '',
+//   createdAt: ''
+// }
 
 const initialState = {
   isLoggedIn: false,

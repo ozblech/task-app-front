@@ -1,10 +1,9 @@
 import React from 'react'
 import Task from '../Task/Task'
-import AddTaskForm from '../AddTaskForm/AddTaskForm'
 import EditTaskForm from '../EditTaskForm/EditTaskForm'
+import AddnewTaskButton from '../AddNewTaskButton/AddNewTaskButton'
 
 
-import addImg from './Add.png'
 
 
 class Tasks extends React.Component {
@@ -17,7 +16,8 @@ class Tasks extends React.Component {
 			addNewTaskButton: true,
 			editTaskPage: false,
 			taskToEditId: '',
-			editingTaskDesc: ''
+			editingTaskDesc: '',
+			toggleTaskComplete: false
 		}	
 	}
 
@@ -40,8 +40,27 @@ class Tasks extends React.Component {
 					editTaskPage: false
 				})
 			}
-		})	
-		
+		})		
+	}
+
+
+
+	editTaskPageOnOff = (sign, _id, description, toggleTaskComplete) => {
+		return(
+		(sign)
+		?
+		this.setState({
+			editTaskPage: true,
+			addNewTaskButton: true,
+			taskToEditId: _id,
+			editingTaskDesc: description,
+			toggleTaskComplete: toggleTaskComplete
+		})
+		:
+		this.setState({
+			editTaskPage: false
+		})
+		)
 	}
 
 	changeAddTaskButtonState = (trueOrFalse) => {
@@ -55,41 +74,18 @@ class Tasks extends React.Component {
 		this.getUserTasks()
 	}
 
-	editTask = (_id, description) => {
-		console.log('task id is: ',_id)
-		this.setState({
-			taskToEditId: _id,
-			editTaskPage: true,
-			editingTaskDesc: description
-		})
-	}
-
-	displayAddTaskButton = () => {
-		const { tasks, addNewTaskButton } = this.state
-		return (
-				(addNewTaskButton)
-					?
-					<div>
-						<img 
-						className='link grow pointer' 
-						onClick={() => this.changeAddTaskButtonState(false)}
-						alt='' src = {addImg} width='150px' height='auto'/>
-					</div>
-					:
-					<div>
-						<AddTaskForm 
-						changeAddTaskButtonState = {this.changeAddTaskButtonState}
-						getUserTasks = {this.getUserTasks}
-						user = {this.state.user}
-						/>
-					</div>
-			)
-	}
+	// editTask = (_id, description) => {
+	// 	console.log('task id is: ',_id)
+	// 	this.setState({
+	// 		taskToEditId: _id,
+	// 		editTaskPage: true,
+	// 		editingTaskDesc: description
+	// 	})
+	// }
 
 	displayAllTasks = () => {
-		const { tasks, addNewTaskButton } = this.state
-		return (
-			
+		const {tasks} = this.state 
+		return (	
 			<div>
 				<h1>Tasks</h1>
 	  			{
@@ -100,7 +96,7 @@ class Tasks extends React.Component {
 							_id={tasks[i]._id} 
 							description={tasks[i].description} 
 							completed={tasks[i].completed}
-							editTask = {this.editTask}
+							editTaskPageOnOff = {this.editTaskPageOnOff}
 							/>
 						);
 					})
@@ -112,32 +108,35 @@ class Tasks extends React.Component {
 	}
 
 	render() {
-		const { user, taskToEditId, getUserTasks, editTaskPage, editingTaskDesc } = this.state
-		return (
+		const { user, taskToEditId, editTaskPage, editingTaskDesc, toggleTaskComplete } = this.state
+		console.log('edit task page not: ', !editTaskPage)
+		return(
 			<div>
-				{
-					(!editTaskPage) 
+				<AddnewTaskButton 
+				addNewTaskButton={this.state.addNewTaskButton}
+				changeAddTaskButtonState = {this.changeAddTaskButtonState}
+				user = {user}
+				getUserTasks= {this.getUserTasks}
+				/>
+				{(editTaskPage)
 					?
-					(
-						this.displayAddTaskButton(),
-						this.displayAllTasks()
-					)
-					:
-					(
 					<div>
 						<EditTaskForm 
 						user={user} 
 						taskToEditId={taskToEditId} 
 						editingTaskDesc = {editingTaskDesc}
 						getUserTasks = {this.getUserTasks}
+						editTaskPageOnOff = {this.editTaskPageOnOff}
+						toggleTaskComplete = {toggleTaskComplete}
 						/>
 					</div>
-					)
+					:
+					this.displayAllTasks()
 				}
-		  	</div>
-		)
-	}	
-	
+			</div>	
+		);
+	}
+		
 }
 
 export default Tasks;

@@ -33,7 +33,6 @@ class AddTaskForm extends React.Component {
 		.then(jsonData=> {
 			console.log('add task: ', jsonData)
 			if (jsonData.description) {
-				const { user, token } = jsonData
 				this.props.getUserTasks()
 				this.props.changeAddTaskButtonState(true)
 			}

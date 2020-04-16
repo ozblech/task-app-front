@@ -9,7 +9,10 @@ class EditTaskForm extends React.Component {
 			completed: this.props.completed,
 			taskToEditId: this.props.taskToEditId,
 			getUserTasks: this.props.getUserTasks,
+			editTaskPageOff: this.props.editTaskPageOnOff,
+			toggleTaskComplete: this.props.toggleTaskComplete,
 			newDescription: ''
+
 		}
 	}
 
@@ -19,7 +22,7 @@ class EditTaskForm extends React.Component {
 
 
 	onSubmitEdit = () => {
-		const { user, newDescription, completed, taskToEditId } = this.state
+		const { user, newDescription, taskToEditId } = this.state
 		console.log('token is', user.token)
 		fetch(`https://blech-task-manager.herokuapp.com/tasks/${taskToEditId}`, {
 			method: 'PATCH',
@@ -36,10 +39,13 @@ class EditTaskForm extends React.Component {
 		.then(jsonData=> {
 			console.log('add task: ', jsonData)
 			if (jsonData.description) {
-				const { user, token } = jsonData
 				this.props.getUserTasks()
 			}
 		})
+	}
+
+	onSubmitCancel = () => {
+		this.props.editTaskPageOnOff(false)
 	}
 
 
@@ -47,20 +53,35 @@ class EditTaskForm extends React.Component {
 		return (
 			<div className="pa4 black-80 flex justify-center">
 			  <div className="measure ">
-			    <label form="description" className="f6 b db mb2">Task Description</label>
-			    <input 
-			    id="newDescription" 
-			    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
-			    type="text" 
-			    aria-describedby="description-desc"
-			    placeholder = {this.state.editingTaskDesc}
-			    onChange={this.onDescriptionChange}
-			    />
+			  	{
+			  	(this.props.toggleTaskComplete)
+			  	?
+			  		<h3>Change complete?</h3>
+				:
+				<div>
+					<div>
+				    <label form="description" className="f6 b db mb2">Task Description</label>
+				    <input 
+				    id="newDescription" 
+				    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
+				    type="text" 
+				    aria-describedby="description-desc"
+				    placeholder = {this.state.editingTaskDesc}
+				    onChange={this.onDescriptionChange}
+				    />
+					</div>
+				</div>
+				}
 			    <button
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
 			    type='submit'
 			    onClick={this.onSubmitEdit}
 			    >Update</button>
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='cancel'
+			    onClick={this.onSubmitCancel}
+			    >Cancel</button>
 			  </div>
 			</div>
 		);

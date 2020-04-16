@@ -1,8 +1,11 @@
 import React from 'react'
 import editImg from './edit.png'
 import completedImg from './completed.png'
+import notCompletedImg from './notCompleted.png'
 
-const Task = ({ description, completed , _id, editTask}) => {
+
+const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
+
 
 	return (
 		<div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 w-40 shadow-5'>
@@ -22,13 +25,28 @@ const Task = ({ description, completed , _id, editTask}) => {
 					<img 
 					className='link pointer' 
 					alt='' src = {editImg} width = "20px"
-					onClick={() => editTask(_id, description)}
+					onClick={() => editTaskPageOnOff(true, _id, description, false)}
 					/>
 				</div>
 				<div className='completed flex justify-center items-center'>
 					<p>Completed</p>
-					<img alt='' src = {completedImg} width = "20px"/>
 				</div>
+				{
+				(!completed)
+				?
+				<img 
+				className='link pointer' 
+				alt='' src = {notCompletedImg} width = "20px"
+				onClick={() => editTaskPageOnOff(true, _id, description, true)}
+				/>
+				:
+				<img 
+				className='link pointer' 
+				alt='' src = {completedImg} width = "20px"
+				onClick={() => editTaskPageOnOff(true, _id, description, true)}
+				/>
+				}
+
 			</div>
 		</div>
 	);
