@@ -5,7 +5,8 @@ class SignIn extends React.Component {
 		super(props);
 		this.state = {
 			emailSignIn: '',
-			passwordSignIn: ''
+			passwordSignIn: '',
+			loginErrorMsg: ''
 		}
 	}
 
@@ -29,11 +30,12 @@ class SignIn extends React.Component {
 		})
 		.then(response=> response.json())
 		.then(jsonData=> {
-			console.log('Login: ', jsonData)
 			if (jsonData.user) {
 				const { user, token } = jsonData
 				this.props.loadUser(user, token)
 				this.props.onRouteChange('home')
+			} else {
+				this.setState({loginErrorMsg: 'Invalid email or password'})
 			}
 		})
 	}
@@ -80,6 +82,7 @@ class SignIn extends React.Component {
 				      <p onClick={() => onRouteChange('register')}  href="#0" className="f6 link dim black db pointer" >Register</p>
 				    </div>
 				  </div>
+				  <h6 className='red pa1 mv1 black-80'>{this.state.loginErrorMsg}</h6>
 				</main>
 			</article>
 

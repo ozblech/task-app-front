@@ -6,7 +6,9 @@ class RegisterForm extends React.Component {
 		this.state = {
 			email: '',
 			password: '',
-			name: ''
+			name: '',
+			passwordErrorMsg: '',
+			emailErrorMsg: ''
 		}
 	}
 
@@ -41,6 +43,10 @@ class RegisterForm extends React.Component {
 				this.props.loadUser(user, token)
 				console.log('Register: ', user, token)
 				this.props.onRouteChange('home')
+			}
+			else if (jsonData.errors) {
+				this.setState({emailErrorMsg: jsonData.errors.email.message})
+				this.setState({passwordErrorMsg: 'Password is invalid'})
 			}
 		})
 	}
@@ -89,6 +95,8 @@ class RegisterForm extends React.Component {
 				      />
 				    </div>
 				  </div>
+				  <h6 className='red pa1 mv1 black-80'>{this.state.emailErrorMsg}</h6>
+			  	  <h6 className='red pa1 mv1'>{this.state.passwordErrorMsg}</h6>
 				</main>
 			</article>
 		);

@@ -6,9 +6,8 @@ import notCompletedImg from './notCompleted.png'
 
 const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
 
-
 	return (
-		<div className='tc bg-light-green dib br3 pa3 ma2 grow bw2 w-40 shadow-5'>
+		<div className='tc bg-light-green dib br3 pa3 ma2 bw2 shadow-5'>
 			<div>
 				<h2>{description}</h2>
 				{
@@ -24,7 +23,7 @@ const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
 					<p>Edit</p>
 					<img 
 					className='link pointer' 
-					alt='' src = {editImg} width = "20px"
+					alt='' src = {editImg} width = "25px"
 					onClick={() => editTaskPageOnOff(true, _id, description, false)}
 					/>
 				</div>
@@ -35,14 +34,14 @@ const Task = ({ description, completed , _id, editTaskPageOnOff }) => {
 					?
 					<img 
 					className='link pointer' 
-					alt='' src = {notCompletedImg} width = "20px"
-					onClick={() => editTaskPageOnOff(true, _id, description, true)}
+					alt='' src = {notCompletedImg} width = "25px"
+					onClick={() => editTaskPageOnOff(true, _id, description, true, completed)}
 					/>
 					:
 					<img 
 					className='link pointer' 
-					alt='' src = {completedImg} width = "20px"
-					onClick={() => editTaskPageOnOff(true, _id, description, true)}
+					alt='' src = {completedImg} width = "25px"
+					onClick={() => editTaskPageOnOff(true, _id, description, true, completed)}
 					/>
 					}
 

@@ -1,4 +1,7 @@
 import React from 'react'
+import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
+
+
 
 class AddTaskForm extends React.Component {
 	constructor(props) {
@@ -7,6 +10,7 @@ class AddTaskForm extends React.Component {
 			user: this.props.user,
 			description: '',
 			completed: false
+
 		}
 	}
 
@@ -40,11 +44,12 @@ class AddTaskForm extends React.Component {
 	}
 
 
+
 	render() {
 		return (
 			<div className="pa4 black-80 flex justify-center">
 			  <div className="measure">
-			    <label form="description" className="f6 b db mb2">Task Description</label>
+			    <label form="description" className="f6 b db mb2">Add Task Description</label>
 			    <input 
 			    id="description" 
 			    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
@@ -57,6 +62,12 @@ class AddTaskForm extends React.Component {
 			    type='submit'
 			    onClick={this.onSubmitAdd}
 			    >Add</button>
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='cancel'
+			    onClick={() => this.props.changeAddTaskButtonState(true)}
+			    >Cancel</button>
+			    
 			  </div>
 			</div>
 		);

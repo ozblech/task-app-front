@@ -3,6 +3,8 @@ import Task from '../Task/Task'
 import EditTaskForm from '../EditTaskForm/EditTaskForm'
 import AddnewTaskButton from '../AddNewTaskButton/AddNewTaskButton'
 
+import './Tasks.css'
+
 
 
 
@@ -17,7 +19,8 @@ class Tasks extends React.Component {
 			editTaskPage: false,
 			taskToEditId: '',
 			editingTaskDesc: '',
-			toggleTaskComplete: false
+			toggleTaskComplete: false,
+			taskCompletedStatus: false
 		}	
 	}
 
@@ -33,11 +36,9 @@ class Tasks extends React.Component {
 		})
 		.then(response => response.json())
 		.then(jsonResponse => {
-			console.log(jsonResponse)
 			if(jsonResponse.length > 0) {
 				this.setState({
-					tasks: jsonResponse,
-					editTaskPage: false
+					tasks: jsonResponse
 				})
 			}
 		})		
@@ -45,16 +46,17 @@ class Tasks extends React.Component {
 
 
 
-	editTaskPageOnOff = (sign, _id, description, toggleTaskComplete) => {
+	editTaskPageOnOff = (editTaskPageOn, _id, description, toggleTaskComplete, completed) => {
 		return(
-		(sign)
+		(editTaskPageOn)
 		?
 		this.setState({
 			editTaskPage: true,
 			addNewTaskButton: true,
 			taskToEditId: _id,
 			editingTaskDesc: description,
-			toggleTaskComplete: toggleTaskComplete
+			toggleTaskComplete: toggleTaskComplete,
+			taskCompletedStatus: completed
 		})
 		:
 		this.setState({
@@ -77,31 +79,40 @@ class Tasks extends React.Component {
 
 	displayAllTasks = () => {
 		const {tasks} = this.state 
-		return (	
-			<div>
-				<h1>Tasks</h1>
-	  			{
-	  				tasks.map((task, i) => {
-						return (
-							<Task 
-							key={i} 
-							_id={tasks[i]._id} 
-							description={tasks[i].description} 
-							completed={tasks[i].completed}
-							editTaskPageOnOff = {this.editTaskPageOnOff}
-							/>
-						);
-					})
+		return (
 
-	  			}		  			
+			<div>
+				<h1>My Tasks</h1>
+				<div className='container'>
+		  			{
+		  				tasks.map((task, i) => {
+							return (
+								<Task 
+								key={i} 
+								_id={tasks[i]._id} 
+								description={tasks[i].description} 
+								completed={tasks[i].completed}
+								editTaskPageOnOff = {this.editTaskPageOnOff}
+								/>
+							);
+						})
+		  			}
+		  		</div>	  			
 	  		</div>
 		)
 
 	}
 
 	render() {
-		const { user, taskToEditId, editTaskPage, editingTaskDesc, toggleTaskComplete } = this.state
-		console.log('edit task page not: ', !editTaskPage)
+		const { 
+			user, 
+			taskToEditId, 
+			editTaskPage, 
+			editingTaskDesc, 
+			toggleTaskComplete,
+			taskCompletedStatus,
+			} = this.state
+
 		return(
 			<div>
 				<AddnewTaskButton 
@@ -118,8 +129,9 @@ class Tasks extends React.Component {
 						taskToEditId={taskToEditId} 
 						editingTaskDesc = {editingTaskDesc}
 						getUserTasks = {this.getUserTasks}
-						editTaskPageOnOff = {this.editTaskPageOnOff}
 						toggleTaskComplete = {toggleTaskComplete}
+						taskCompletedStatus = {taskCompletedStatus}
+						editTaskPageOnOff = {this.editTaskPageOnOff}
 						/>
 					</div>
 					:

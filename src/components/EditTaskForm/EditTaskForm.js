@@ -6,11 +6,11 @@ class EditTaskForm extends React.Component {
 		this.state = {
 			user: this.props.user,
 			editingTaskDesc: this.props.editingTaskDesc,
-			completed: this.props.completed,
 			taskToEditId: this.props.taskToEditId,
 			getUserTasks: this.props.getUserTasks,
-			editTaskPageOff: this.props.editTaskPageOnOff,
 			toggleTaskComplete: this.props.toggleTaskComplete,
+			taskCompletedStatus: this.props.taskCompletedStatus,
+			editTaskPageOnOff: this.props.editTaskPageOnOff,
 			newDescription: ''
 
 		}
@@ -22,10 +22,10 @@ class EditTaskForm extends React.Component {
 
 
 	onSubmitEdit = () => {
-		const { user, newDescription, taskToEditId, toggleTaskComplete } = this.state
+		const { user, newDescription, taskToEditId, toggleTaskComplete, taskCompletedStatus } = this.state
 		const patchBody = (toggleTaskComplete) ?
 			({
-				completed : !this.props.completed
+				completed : !taskCompletedStatus
 			})
 			:
 			({
@@ -45,27 +45,48 @@ class EditTaskForm extends React.Component {
 		.then(jsonData=> {
 			if (jsonData.description) {
 				this.props.getUserTasks()
+				this.taskEditFormOff(false)
 			}
 		})
 	}
 
-	onSubmitCancel = () => {
+	onSubmitDelete = () => {
+		const { user, taskToEditId } = this.state
+
+		fetch(`https://blech-task-manager.herokuapp.com/tasks/${taskToEditId}`, {
+			method: 'DELETE',
+			headers: {
+				'content-type': 'application/json; charset=UTF-8',
+				Authorization: `Bearer ${user.token}`
+			},
+		})
+		.then(response=> response.json())
+		.then(jsonData=> {
+			if (jsonData.description) {
+				this.props.getUserTasks()
+				this.taskEditFormOff(false)
+			}
+		})
+	}
+
+	taskEditFormOff = () => {
 		this.props.editTaskPageOnOff(false)
 	}
 
 
 	render() {
+
 		return (
 			<div className="pa4 black-80 flex justify-center center">
 			  <div className="measure ">
 			  	{
 			  	(this.props.toggleTaskComplete)
 			  	?
-			  		<h3>Change complete?</h3>
+			  		<h3>Toggle complete?</h3>
 				:
-				<div>
+				<div className='center'>
 					<div>
-				    <label form="description" className="f6 b db mb2">Task Description</label>
+				    <label form="description" className="f6 b db mb2">Add Task Description</label>
 				    <input 
 				    id="newDescription" 
 				    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
@@ -85,8 +106,13 @@ class EditTaskForm extends React.Component {
 			    <button
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
 			    type='cancel'
-			    onClick={this.onSubmitCancel}
+			    onClick={this.taskEditFormOff}
 			    >Cancel</button>
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='delete'
+			    onClick={this.onSubmitDelete}
+			    >Delete</button>
 			  </div>
 			</div>
 		);

@@ -13,7 +13,8 @@ class Profile extends React.Component  {
 			ageInput: '',
 			showEditUser: false,
 			ageErrorMessage: '',
-			emailErrorMessage: ''
+			emailErrorMessage: '',
+			deleteUserForm: false
 		}
 	}
 
@@ -108,7 +109,7 @@ class Profile extends React.Component  {
 			  <div className="measure">
 			    <label form="userDetails" className="f6 b db mb2">Update User</label>
 			    <input 
-			    id="name123" 
+			    id="name" 
 			    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
 			    type="text" 
 			    onChange={this.onNameChange}
@@ -133,11 +134,43 @@ class Profile extends React.Component  {
 			    type='update'
 			    onClick={() => this.onSubmitUpdate()}
 			    >Update</button>
-			    <h6 className='red pa0 black-80'>{this.state.emailErrorMessage}</h6>
-			  	<h6 className='red pa0'>{this.state.ageErrorMessage}</h6>
-			  </div>  	
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='update'
+			    onClick={() => this.setState({showEditUser: false})}
+			    >Cancel</button>
+			    <button 
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-light-red'
+			    onClick={() => this.setState({deleteUserForm: true})}
+				>Delete User</button>
+			    
+			    <h6 className='red pa1 mv1 black-80'>{this.state.emailErrorMessage}</h6>
+			  	<h6 className='red pa1 mv1'>{this.state.ageErrorMessage}</h6>
+			  </div> 	
 			</div>
 		);
+	}
+
+	showDeleteUserForm = () => {
+		return (
+			<div className="pa4 black-80 flex justify-center">
+				<div className="measure">
+			    <label form="userDetails" className="f3 b db mb2">Delete User?</label>
+			    <p>This action can not be undone!</p>
+			    <p>All user data will be lost!</p>
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='No'
+			    onClick={() => this.setState({deleteUserForm: false})}
+			    >No</button>
+			    <button
+			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
+			    type='Yes'
+			    onClick={() => this.deleteUser()}
+			    >Yes</button>
+			    </div>
+			</div>
+		)
 	}
 
 	render() {
@@ -147,18 +180,18 @@ class Profile extends React.Component  {
 			{
 				(this.state.showEditUser)
 				?
-				this.showUserEditForm()
+				((this.state.deleteUserForm)
+					?
+					this.showDeleteUserForm()
+					:
+				 	this.showUserEditForm())
 				:
 				this.showUserDetails()
 			}
 			<Photo user={user}/>
 			<br />
 			<Tasks user={user}/>
-			<div>
-				<button className='w-30 grow f4 link ph3 pv dib white bg-light-purple'
-				onClick= {this.deleteUser}
-				>Delete User</button>
-			</div>
+			
 
 
 		</div>

@@ -10,7 +10,9 @@ class Photo extends React.Component {
 		super(props);
 		this.state = {
 			avatar: false,
-			changePhoto: false
+			changePhoto: false,
+			errorText: '',
+			uploadingText: ''
 		}
 		
 	}
@@ -40,25 +42,28 @@ class Photo extends React.Component {
 	}
 
 
-	onPhotoChangeClick = () => {
+	onPhotoChangeClick = async () => {
 		const fileInput = document.querySelector('#myfile').files[0]
 		const formData = new FormData()
+		this.setState({uploadingText: 'Uploading...'})
 		formData.append('avatar', fileInput)
-		fetch('https://blech-task-manager.herokuapp.com/users/me/avatar', {
+		let result = await fetch('https://blech-task-manager.herokuapp.com/users/me/avatar', {
 			method: 'post',
 			body: formData,
 			headers: {
 				Authorization: `Bearer ${this.props.user.token}`
 			}
-		})
-		.then(response => {
-			if(response.status === 200) {
-			this.setState({
-				avatar: true,
-				changePhoto: false
-				})
-			}
-		})
+		})	
+		if(result.status === 200) {
+		this.setState({
+			avatar: true,
+			changePhoto: false
+			})
+		} else {
+			let jsonRes = await result.json()
+			this.setState({errorText: jsonRes.error})
+		}
+		this.setState({uploadingText: ''})
 	}
 
 	onPhotoDeleteClick = () => {
@@ -105,17 +110,16 @@ class Photo extends React.Component {
 	showChangePhotoForm = () => {
 
 		return (
-			<div className='tc bg-blue dib br3 pa1 ma4 grow bw2 w-30 o-90 shadow-5'>
-				<div>
-				<h4>
-					<form className='f5 white ma4' action="/action_page.php">
+			<div>
+			<div className="pt3 black-80 flex justify-center">
+				<div className="measure">
+					<form className='f7 white ma4' action="/action_page.php">
 				  	<input type="file" id="myfile" name="myfile" />
 					</form>
-				</h4>
 				</div>
-
+			</div>
+			<div className="pb6 black-80 flex justify-center">
 				<div>
-				<p>
 					<button
 					className='outline w-15 f6 link dim ph3 pv2 mb2 dib white bg-dark-blue'
 					type='submit'
@@ -131,16 +135,17 @@ class Photo extends React.Component {
 					type='cancel'
 					onClick={() => this.changePhotoToggle(false)}
 					>Cancel</button>
-				</p>
+					<h6 className='black pa1 mv1 black-80'>{this.state.uploadingText}</h6>
+					<h6 className='red pa1 mv1 black-80'>{this.state.errorText}</h6>
 				</div>
-		</div>
+			</div>
+			</div>
 		
 		)
 	}
 
 	render() {
 		const { user } = this.props
-		console.log('show changephoto?',this.state.changePhoto)
 		return (
 			<div className='center '>
 				{
