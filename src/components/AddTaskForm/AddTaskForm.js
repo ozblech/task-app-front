@@ -47,7 +47,7 @@ class AddTaskForm extends React.Component {
 
 	render() {
 		return (
-			<div className="pa4 black-80 flex justify-center">
+			<div className="pa4 black-80 center">
 			  <div className="measure">
 			    <label form="description" className="f6 b db mb2">Add Task Description</label>
 			    <input 

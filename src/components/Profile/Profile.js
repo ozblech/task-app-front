@@ -105,7 +105,7 @@ class Profile extends React.Component  {
 		const {user} = this.props
 		
 		return (
-			<div className="pa4 black-80 flex justify-center">
+			<div className="pa4 black-80 flex justify-center center">
 			  <div className="measure">
 			    <label form="userDetails" className="f6 b db mb2">Update User</label>
 			    <input 
