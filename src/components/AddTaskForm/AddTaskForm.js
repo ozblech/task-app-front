@@ -67,7 +67,7 @@ class AddTaskForm extends React.Component {
 			    type='cancel'
 			    onClick={() => this.props.changeAddTaskButtonState(true)}
 			    >Cancel</button>
-			    
+			    <VoiceRecognition updateDescriptionInput={(d) => this.setState({description: d})}/>
 			  </div>
 			</div>
 		);

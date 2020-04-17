@@ -1,61 +1,76 @@
-import React from 'react'
+'use strict'
+import React, { Component } from 'react'
+import mic from '../AddTaskForm/mic.png'
 
-const speechRecognition = window.speechRecognition || window.webkitSpeechRecognition;
 
-const recognition = new speechRecognition();
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+const recognition = new SpeechRecognition()
 
 recognition.continous = true
+recognition.interimResults = true
 recognition.lang = 'en-US'
-recognition.start()
 
-class VoiceRecognition extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-			count: 0,
-			setCount: 0,
-			listening: false
-		}	
-	}
-	
-	toggleListen = () => {
-		this.setState({listening: !this.state.listening}, this.handleListen)
-	}
+
+class VoiceRecognition extends Component {
+	constructor(props) {
+    super(props)
+    	this.state = {
+     	 listening: false
+    }
+	    this.toggleListen = this.toggleListen.bind(this)
+	    this.handleListen = this.handleListen.bind(this)
+  	}
+  
+  toggleListen() {
+    this.setState({
+      listening: !this.state.listening
+    }, this.handleListen)
+  }
 
 	handleListen = () => {
+		if (this.state.listening) recognition.start()
 
-	}
+	    let finalTranscript = ''
+	    recognition.onresult = event => {
+		    let interimTranscript = ''
 
-	componentDidMount() {
-		this.voiceCommands();
-	}
+		    for (let i = event.resultIndex; i < event.results.length; i++) {
+		    	const transcript = event.results[i][0].transcript;
+		        if (event.results[i].isFinal) finalTranscript += transcript + ' ';
+		        else interimTranscript += transcript;
+		    }
 
-
-	voiceCommands = () => {
-		console.log('hi there')
-		//On start
-		recognition.onstart = () => {
-			console.log('Voice is active')
-		}
-
-		// Do something with result
-		recognition.onresult = (e) => {
-			let current = e.rsultIndex
-
-			let transcript = e.result[current][0].transcript
-			console.log(transcript)
+		    document.getElementById('description').value = finalTranscript
+		    this.props.updateDescriptionInput(finalTranscript)
 		}
 	}
+
 
 	render() {
-		this.voiceCommands();
-		console.log('helli')
-		return 0
+		return (
+			<div style={container}>
+				<img id = 'microphone-btn' 
+				className='pointer grow'
+				src={mic} 
+				width = "50px"
+				onClick={this.toggleListen} 
+				/>
+     		</div>
+		)
 	}
 }
 
 
 export default VoiceRecognition;
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center'
+  },
 
-	
+}
+
+const { container } = styles

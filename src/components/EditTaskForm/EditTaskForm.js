@@ -1,4 +1,6 @@
 import React from 'react'
+import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
+
 
 class EditTaskForm extends React.Component {
 	constructor(props) {
@@ -88,7 +90,7 @@ class EditTaskForm extends React.Component {
 					<div>
 				    <label form="description" className="f6 b db mb2">Add Task Description</label>
 				    <input 
-				    id="newDescription" 
+				    id="description" 
 				    className="input-reset ba b--black-20 pa2 mb2 db w-100" 
 				    type="text" 
 				    aria-describedby="description-desc"
@@ -113,6 +115,7 @@ class EditTaskForm extends React.Component {
 			    type='delete'
 			    onClick={this.onSubmitDelete}
 			    >Delete</button>
+			    <VoiceRecognition updateDescriptionInput={(d) => this.setState({newDescription: d})}/>
 			  </div>
 			</div>
 		);
