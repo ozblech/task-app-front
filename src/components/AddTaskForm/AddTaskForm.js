@@ -1,5 +1,6 @@
 import React from 'react'
-import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
+// import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
+
 
 
 
