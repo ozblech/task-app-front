@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/task-app-front/static/css/main.96b624e3.chunk.css",
-    "main.js": "/task-app-front/static/js/main.bf676c7a.chunk.js",
-    "main.js.map": "/task-app-front/static/js/main.bf676c7a.chunk.js.map",
+    "main.js": "/task-app-front/static/js/main.0672c082.chunk.js",
+    "main.js.map": "/task-app-front/static/js/main.0672c082.chunk.js.map",
     "runtime-main.js": "/task-app-front/static/js/runtime-main.52bbfe7c.js",
     "runtime-main.js.map": "/task-app-front/static/js/runtime-main.52bbfe7c.js.map",
     "static/css/2.3b6f1bda.chunk.css": "/task-app-front/static/css/2.3b6f1bda.chunk.css",
     "static/js/2.37d54bfb.chunk.js": "/task-app-front/static/js/2.37d54bfb.chunk.js",
     "static/js/2.37d54bfb.chunk.js.map": "/task-app-front/static/js/2.37d54bfb.chunk.js.map",
     "index.html": "/task-app-front/index.html",
-    "precache-manifest.fedf04bfe4c31e57f0192c6918b77fd1.js": "/task-app-front/precache-manifest.fedf04bfe4c31e57f0192c6918b77fd1.js",
+    "precache-manifest.6d79730486ef0f61d5acb4b5f44f3e12.js": "/task-app-front/precache-manifest.6d79730486ef0f61d5acb4b5f44f3e12.js",
     "service-worker.js": "/task-app-front/service-worker.js",
     "static/css/2.3b6f1bda.chunk.css.map": "/task-app-front/static/css/2.3b6f1bda.chunk.css.map",
     "static/css/main.96b624e3.chunk.css.map": "/task-app-front/static/css/main.96b624e3.chunk.css.map",
@@ -24,6 +24,6 @@
     "static/css/2.3b6f1bda.chunk.css",
     "static/js/2.37d54bfb.chunk.js",
     "static/css/main.96b624e3.chunk.css",
-    "static/js/main.bf676c7a.chunk.js"
+    "static/js/main.0672c082.chunk.js"
   ]
 }
