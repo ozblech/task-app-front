@@ -69,6 +69,11 @@ class Profile extends React.Component  {
 		if(nameInput === '') nameInput = user.name
 		if(emailInput === '') emailInput = user.email
 		if(ageInput === '') ageInput = user.age
+
+		this.setState({
+			ageErrorMessage:'',
+			emailErrorMessage:''
+		})	
 		fetch(`https://blech-task-manager.herokuapp.com/users/me`, {
 			method: 'PATCH',
 			headers: {
@@ -136,8 +141,12 @@ class Profile extends React.Component  {
 			    >Update</button>
 			    <button
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
-			    type='update'
-			    onClick={() => this.setState({showEditUser: false})}
+			    type='cancel'
+			    onClick={() => this.setState({
+			    	showEditUser: false,
+					ageErrorMessage:'',
+					emailErrorMessage:''
+			    })}
 			    >Cancel</button>
 			    <button 
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-light-red'

@@ -45,11 +45,11 @@ class VoiceRecognition extends Component {
 		    	this.props.updateDescriptionInput(finalTranscript)
 		    }
 		    else {
-		    	if(finalTranscript === 'no '){
+		    	if(finalTranscript === 'no ' || finalTranscript === 'cancel '){
 		    		console.log(document.getElementById('cancelEditTask'))
 		    		document.getElementById('cancelEditTask').click()
 		    	}
-		    	if(finalTranscript === 'yes '){
+		    	if(finalTranscript === 'yes ' || finalTranscript === 'update '){
 		    		document.getElementById('submitEditTask').click()
 		    	}
 		    }

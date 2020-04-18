@@ -8,7 +8,8 @@ class RegisterForm extends React.Component {
 			password: '',
 			name: '',
 			passwordErrorMsg: '',
-			emailErrorMsg: ''
+			emailErrorMsg: '',
+			nameErrorMsg: ''
 		}
 	}
 
@@ -24,9 +25,14 @@ class RegisterForm extends React.Component {
 
 	onPasswordChange = (event) => {
 		this.setState({password: event.target.value})
-	}
+	} 
 
 	onSubmitRegister = () => {
+		this.setState({
+			emailErrorMsg: '',
+			passwordErrorMsg: '',
+			nameErrorMsg: ''
+		})
 		fetch('https://blech-task-manager.herokuapp.com/users', {
 		method: 'post',
 		headers: {'content-type': 'application/json'},
@@ -45,8 +51,15 @@ class RegisterForm extends React.Component {
 				this.props.onRouteChange('home')
 			}
 			else if (jsonData.errors) {
-				this.setState({emailErrorMsg: jsonData.errors.email.message})
-				this.setState({passwordErrorMsg: 'Password is invalid'})
+				if(jsonData.errors.email) {
+					this.setState({emailErrorMsg: jsonData.errors.email.message})
+				}
+				if(jsonData.errors.password) {
+					this.setState({passwordErrorMsg: 'Password is invalid'})
+				}
+				if(jsonData.errors.name) {
+					this.setState({nameErrorMsg: 'Name is invalid'})
+				}
 			}
 		})
 	}
@@ -95,6 +108,7 @@ class RegisterForm extends React.Component {
 				      />
 				    </div>
 				  </div>
+				  <h6 className='red pa1 mv1'>{this.state.nameErrorMsg}</h6>
 				  <h6 className='red pa1 mv1 black-80'>{this.state.emailErrorMsg}</h6>
 			  	  <h6 className='red pa1 mv1'>{this.state.passwordErrorMsg}</h6>
 				</main>

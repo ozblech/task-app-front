@@ -45,7 +45,10 @@ class Photo extends React.Component {
 	onPhotoChangeClick = async () => {
 		const fileInput = document.querySelector('#myfile').files[0]
 		const formData = new FormData()
-		this.setState({uploadingText: 'Uploading...'})
+		this.setState({
+			uploadingText: 'Uploading...',
+			errorText: ''
+		})
 		formData.append('avatar', fileInput)
 		let result = await fetch('https://blech-task-manager.herokuapp.com/users/me/avatar', {
 			method: 'post',
@@ -75,7 +78,8 @@ class Photo extends React.Component {
 		})
 		this.setState({
 			avatar: false,
-			changePhoto: false
+			changePhoto: false,
+			errorText: ''
 		})
 
 	}
@@ -85,7 +89,10 @@ class Photo extends React.Component {
 		?
 		this.setState({changePhoto: true})
 		:
-		this.setState({changePhoto: false})
+		this.setState({
+			changePhoto: false,
+			errorText: ''
+		})
 	}
 
 	showUserAvater = () => {
