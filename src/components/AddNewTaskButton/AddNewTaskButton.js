@@ -11,7 +11,6 @@ const AddNewTaskButton = (props) => {
 		getUserTasks,
 		user
 		} = props
-	console.log('new task button', addNewTaskButton)
 	return(
 	(addNewTaskButton)
 	?

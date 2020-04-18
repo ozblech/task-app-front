@@ -102,12 +102,14 @@ class EditTaskForm extends React.Component {
 				}
 			    <button
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
-			    type='submit'
+			    type='submitEditTask'
+			    id='submitEditTask'
 			    onClick={this.onSubmitEdit}
 			    >Update</button>
 			    <button
 			    className='ph3 link dim f6 ph3 pv2 mb2 dib white bg-navy'
-			    type='cancel'
+			    type='cancelEditTask'
+			    id='cancelEditTask'
 			    onClick={this.taskEditFormOff}
 			    >Cancel</button>
 			    <button

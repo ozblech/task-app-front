@@ -39,9 +39,21 @@ class VoiceRecognition extends Component {
 		        if (event.results[i].isFinal) finalTranscript += transcript + ' ';
 		        else interimTranscript += transcript;
 		    }
-
-		    document.getElementById('description').value = finalTranscript
-		    this.props.updateDescriptionInput(finalTranscript)
+		    if(document.getElementById('description')) {
+		    	console.log(document.getElementById('description'))
+		    	document.getElementById('description').value = finalTranscript
+		    	this.props.updateDescriptionInput(finalTranscript)
+		    }
+		    else {
+		    	if(finalTranscript === 'no '){
+		    		console.log(document.getElementById('cancelEditTask'))
+		    		document.getElementById('cancelEditTask').click()
+		    	}
+		    	if(finalTranscript === 'yes '){
+		    		document.getElementById('submitEditTask').click()
+		    	}
+		    }
+		    
 		}
 	}
 

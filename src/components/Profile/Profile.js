@@ -51,13 +51,13 @@ class Profile extends React.Component  {
 		const { user } = this.props
 		return(
 			<article 
-			className = 'grow pointer mw5 center br3 pa4-ns mv3 b--black-10'
+			className = 'grow pointer mw6 center br3 pa4-ns mv3 b--black-10'
 			onClick={()=> this.setState({showEditUser: true})}
 			>
-				<div className = 'tc'>
-					<h1 className = 'f3 mb2'>{`${user.name}`}</h1>
-					<h2 className = 'f5 fw4 black mt0'>{`email: ${user.email}`}</h2>
-					<h2 className = 'f5 fw4 black mt0'>{`age: ${user.age}`}</h2>
+				<div className = 'tl'>
+					<h1 className = 'f2 mb2'>{`${user.name}`}</h1>
+					<h2 className = 'f3 fw4 black mt0'>{`email: ${user.email}`}</h2>
+					<h2 className = 'f3 fw4 black mt0'>{`age: ${user.age}`}</h2>
 				</div>
 			</article>
 		)
@@ -105,7 +105,7 @@ class Profile extends React.Component  {
 		const {user} = this.props
 		
 		return (
-			<div className="pa4 black-80 flex justify-center center">
+			<div className="pa4 black-80 center">
 			  <div className="measure">
 			    <label form="userDetails" className="f6 b db mb2">Update User</label>
 			    <input 
@@ -153,8 +153,8 @@ class Profile extends React.Component  {
 
 	showDeleteUserForm = () => {
 		return (
-			<div className="pa4 black-80 flex justify-center">
-				<div className="measure">
+			<div className="pa4 black-80 center">
+				<div>
 			    <label form="userDetails" className="f3 b db mb2">Delete User?</label>
 			    <p>This action can not be undone!</p>
 			    <p>All user data will be lost!</p>
