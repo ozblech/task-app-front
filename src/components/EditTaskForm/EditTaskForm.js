@@ -117,12 +117,14 @@ class EditTaskForm extends React.Component {
 			    type='delete'
 			    onClick={this.onSubmitDelete}
 			    >Delete</button>
-			    <VoiceRecognition updateDescriptionInput={(d) => this.setState({newDescription: d})}/>
 			  </div>
 			</div>
 		);
 	} 
 
 }
+
+// <VoiceRecognition updateDescriptionInput={(d) => this.setState({newDescription: d})}/>
+
 
 export default EditTaskForm;
