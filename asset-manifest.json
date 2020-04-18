@@ -1,28 +1,29 @@
 {
   "files": {
     "main.css": "/task-app-front/static/css/main.96b624e3.chunk.css",
-    "main.js": "/task-app-front/static/js/main.9239bdd4.chunk.js",
-    "main.js.map": "/task-app-front/static/js/main.9239bdd4.chunk.js.map",
+    "main.js": "/task-app-front/static/js/main.e5f42f7d.chunk.js",
+    "main.js.map": "/task-app-front/static/js/main.e5f42f7d.chunk.js.map",
     "runtime-main.js": "/task-app-front/static/js/runtime-main.52bbfe7c.js",
     "runtime-main.js.map": "/task-app-front/static/js/runtime-main.52bbfe7c.js.map",
     "static/css/2.3b6f1bda.chunk.css": "/task-app-front/static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.57927b2c.chunk.js": "/task-app-front/static/js/2.57927b2c.chunk.js",
-    "static/js/2.57927b2c.chunk.js.map": "/task-app-front/static/js/2.57927b2c.chunk.js.map",
+    "static/js/2.37d54bfb.chunk.js": "/task-app-front/static/js/2.37d54bfb.chunk.js",
+    "static/js/2.37d54bfb.chunk.js.map": "/task-app-front/static/js/2.37d54bfb.chunk.js.map",
     "index.html": "/task-app-front/index.html",
-    "precache-manifest.3b299ed8a7889d08cf8688aafa37d932.js": "/task-app-front/precache-manifest.3b299ed8a7889d08cf8688aafa37d932.js",
+    "precache-manifest.6cfa1c63be7e2362108519772abc757d.js": "/task-app-front/precache-manifest.6cfa1c63be7e2362108519772abc757d.js",
     "service-worker.js": "/task-app-front/service-worker.js",
     "static/css/2.3b6f1bda.chunk.css.map": "/task-app-front/static/css/2.3b6f1bda.chunk.css.map",
     "static/css/main.96b624e3.chunk.css.map": "/task-app-front/static/css/main.96b624e3.chunk.css.map",
-    "static/js/2.57927b2c.chunk.js.LICENSE.txt": "/task-app-front/static/js/2.57927b2c.chunk.js.LICENSE.txt",
+    "static/js/2.37d54bfb.chunk.js.LICENSE.txt": "/task-app-front/static/js/2.37d54bfb.chunk.js.LICENSE.txt",
     "static/media/Add.png": "/task-app-front/static/media/Add.006522fe.png",
     "static/media/anonymous.png": "/task-app-front/static/media/anonymous.31cb6acd.png",
-    "static/media/completed.png": "/task-app-front/static/media/completed.6afd2373.png"
+    "static/media/completed.png": "/task-app-front/static/media/completed.6afd2373.png",
+    "static/media/mic.png": "/task-app-front/static/media/mic.9a793b73.png"
   },
   "entrypoints": [
     "static/js/runtime-main.52bbfe7c.js",
     "static/css/2.3b6f1bda.chunk.css",
-    "static/js/2.57927b2c.chunk.js",
+    "static/js/2.37d54bfb.chunk.js",
     "static/css/main.96b624e3.chunk.css",
-    "static/js/main.9239bdd4.chunk.js"
+    "static/js/main.e5f42f7d.chunk.js"
   ]
 }

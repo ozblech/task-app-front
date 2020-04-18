@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "86ec410cab4301ea923e91ea81ef8b08",
+    "revision": "67923739ea9290137845de897159a379",
     "url": "/task-app-front/index.html"
   },
   {
-    "revision": "4f7aee7632fc830a5226",
+    "revision": "3280e46a148744f1a566",
     "url": "/task-app-front/static/css/2.3b6f1bda.chunk.css"
   },
   {
-    "revision": "d1c62819434ed1655dbd",
+    "revision": "6a34b819e1659cf2362c",
     "url": "/task-app-front/static/css/main.96b624e3.chunk.css"
   },
   {
-    "revision": "4f7aee7632fc830a5226",
-    "url": "/task-app-front/static/js/2.57927b2c.chunk.js"
+    "revision": "3280e46a148744f1a566",
+    "url": "/task-app-front/static/js/2.37d54bfb.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/task-app-front/static/js/2.57927b2c.chunk.js.LICENSE.txt"
+    "url": "/task-app-front/static/js/2.37d54bfb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "d1c62819434ed1655dbd",
-    "url": "/task-app-front/static/js/main.9239bdd4.chunk.js"
+    "revision": "6a34b819e1659cf2362c",
+    "url": "/task-app-front/static/js/main.e5f42f7d.chunk.js"
   },
   {
     "revision": "9a798aed100d8135a885",
@@ -38,5 +38,9 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "6afd237308b6db6e72ba750cbf260743",
     "url": "/task-app-front/static/media/completed.6afd2373.png"
+  },
+  {
+    "revision": "9a793b73e48072c816aadbfb88a9e08f",
+    "url": "/task-app-front/static/media/mic.9a793b73.png"
   }
 ]);
