@@ -1,4 +1,5 @@
 import React from 'react'
+import { API_BASE_URL } from '../../config';
 // import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
 
 
@@ -22,7 +23,7 @@ class AddTaskForm extends React.Component {
 
 	onSubmitAdd = () => {
 		const { user, description, completed } = this.state
-		fetch('https://blech-task-manager.herokuapp.com/tasks', {
+		fetch(`${API_BASE_URL}/tasks`, {
 			method: 'post',
 			headers: {
 				'content-type': 'application/json',

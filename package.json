@@ -1,17 +1,17 @@
 {
-  "name": "task-app-fron",
-  "homepage": "https://ozblech.github.io/task-app-front",
+  "name": "task-app-front",
+  "homepage": ".",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^6.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-particles-js": "^3.0.3",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^5.0.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {

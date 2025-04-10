@@ -1,6 +1,7 @@
 import React from 'react'
 import Photo from '../Photo/Photo'
 import Tasks from '../Tasks/Tasks'
+import { API_BASE_URL } from '../../config';
 
 
 class Profile extends React.Component  {
@@ -30,7 +31,7 @@ class Profile extends React.Component  {
 
 	deleteUser = () => {
 		const { onRouteChange, user } = this.props
-		fetch('https://blech-task-manager.herokuapp.com/users/me/', {
+		fetch(`${API_BASE_URL}/users/me/`, {
 			method: 'delete',
 			headers: {
 				'content-type': 'application/json',
@@ -74,7 +75,7 @@ class Profile extends React.Component  {
 			ageErrorMessage:'',
 			emailErrorMessage:''
 		})	
-		fetch(`https://blech-task-manager.herokuapp.com/users/me`, {
+		fetch(`${API_BASE_URL}/users/me`, {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json; charset=UTF-8',

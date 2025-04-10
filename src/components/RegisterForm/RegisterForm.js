@@ -1,4 +1,5 @@
 import React from 'react'
+import { API_BASE_URL } from '../../config.js';
 
 class RegisterForm extends React.Component {
 	constructor(props) {
@@ -33,7 +34,7 @@ class RegisterForm extends React.Component {
 			passwordErrorMsg: '',
 			nameErrorMsg: ''
 		})
-		fetch('https://blech-task-manager.herokuapp.com/users', {
+		fetch(`${API_BASE_URL}/users`, {
 		method: 'post',
 		headers: {'content-type': 'application/json'},
 		body: JSON.stringify({

@@ -1,4 +1,5 @@
 import React from 'react'
+import { API_BASE_URL } from '../../config';
 // import VoiceRecognition from '../VoiceRecognition/VoiceRecognition'
 
 
@@ -34,7 +35,7 @@ class EditTaskForm extends React.Component {
 				description: newDescription
 			})
 
-		fetch(`https://blech-task-manager.herokuapp.com/tasks/${taskToEditId}`, {
+		fetch(`${API_BASE_URL}/tasks/${taskToEditId}`, {
 			method: 'PATCH',
 			headers: {
 				'content-type': 'application/json; charset=UTF-8',
@@ -55,7 +56,7 @@ class EditTaskForm extends React.Component {
 	onSubmitDelete = () => {
 		const { user, taskToEditId } = this.state
 
-		fetch(`https://blech-task-manager.herokuapp.com/tasks/${taskToEditId}`, {
+		fetch(`${API_BASE_URL}/tasks/${taskToEditId}`, {
 			method: 'DELETE',
 			headers: {
 				'content-type': 'application/json; charset=UTF-8',

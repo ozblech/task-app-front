@@ -1,4 +1,5 @@
 import React from 'react'
+import { API_BASE_URL } from '../../config';
 
 class SignIn extends React.Component {
 	constructor(props) {
@@ -20,7 +21,7 @@ class SignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('https://blech-task-manager.herokuapp.com/users/login', {
+		fetch(`${API_BASE_URL}/users/login`, {
 			method: 'post',
 			headers: {'content-type': 'application/json'},
 			body: JSON.stringify({

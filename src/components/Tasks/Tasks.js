@@ -2,6 +2,7 @@ import React from 'react'
 import Task from '../Task/Task'
 import EditTaskForm from '../EditTaskForm/EditTaskForm'
 import AddnewTaskButton from '../AddNewTaskButton/AddNewTaskButton'
+import { API_BASE_URL } from '../../config';
 
 import './Tasks.css'
 
@@ -24,25 +25,39 @@ class Tasks extends React.Component {
 		}	
 	}
 
-	getUserTasks = () => {
-		const user = this.state.user
-		fetch('https://blech-task-manager.herokuapp.com/tasks', {
-			method: 'get',
-			headers: {
-				'content-type': 'application/json',
-				Authorization: `Bearer ${user.token}`
+	getUserTasks = async () => {
+		try {
+			const user = this.state.user;
+			const response = await fetch(`${API_BASE_URL}/tasks`, {
+				method: 'get',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${user.token}`,
+				},
+			});
+	
+			if (!response.ok) {
+				throw new Error(`HTTP error! Status: ${response.status}`);
 			}
-			
-		})
-		.then(response => response.json())
-		.then(jsonResponse => {
-			if(jsonResponse.length > 0) {
-				this.setState({
-					tasks: jsonResponse
-				})
+	
+			const contentType = response.headers.get('content-type');
+			let jsonResponse = [];
+	
+			if (contentType && contentType.includes('application/json')) {
+				jsonResponse = await response.json();
 			}
-		})		
-	}
+	
+			if (Array.isArray(jsonResponse) && jsonResponse.length > 0) {
+				this.setState({ tasks: jsonResponse });
+			} else {
+				this.setState({ tasks: [] }); // or show a message like "no tasks yet"
+			}
+		} catch (error) {
+			console.error('Failed to fetch tasks:', error.message);
+			// Optionally: this.setState({ error: error.message });
+		}
+	};
+	
 
 
 

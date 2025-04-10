@@ -1,5 +1,6 @@
 import React from 'react'
 import anonymous from './anonymous.png'
+import { API_BASE_URL } from '../../config';
 
 
 
@@ -18,22 +19,28 @@ class Photo extends React.Component {
 	}
 
 
-	getUserAvatar = async() => {
-		const user = this.props.user
+	getUserAvatar = async () => {
+		const { user } = this.props;
+	
 		try {
-			await fetch(`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`, {
-			method: 'get',
-			headers: {
-				Authorization: `Bearer ${user.token}`
-			}
-			})
-			.then(response => {
-				if(response.status === 200) {
-					this.setState({avatar: true})
+			const response = await fetch(`${API_BASE_URL}/users/${user._id}/avatar`, {
+				method: 'GET',
+				headers: {
+					Authorization: `Bearer ${user.token}`
 				}
-			})
-		} catch(err) {
-			this.setState({avatar: false})
+			});
+	
+			if (response.status === 200) {
+				this.setState({ avatar: true });
+			} else if (response.status === 204 || response.status === 404) {
+				this.setState({ avatar: false });
+			} else {
+				console.warn('Unexpected response status:', response.status);
+				this.setState({ avatar: false });
+			}
+		} catch (error) {
+			console.error('Failed to fetch avatar:', error);
+			this.setState({ avatar: false });
 		}
 	}
 
@@ -50,7 +57,7 @@ class Photo extends React.Component {
 			errorText: ''
 		})
 		formData.append('avatar', fileInput)
-		let result = await fetch('https://blech-task-manager.herokuapp.com/users/me/avatar', {
+		let result = await fetch(`${API_BASE_URL}/users/me/avatar`, {
 			method: 'post',
 			body: formData,
 			headers: {
@@ -70,7 +77,7 @@ class Photo extends React.Component {
 	}
 
 	onPhotoDeleteClick = () => {
-		fetch('https://blech-task-manager.herokuapp.com/users/me/avatar', {
+		fetch(`${API_BASE_URL}/users/me/avatar`, {
 			method: 'delete',
 			headers: {
 				Authorization: `Bearer ${this.props.user.token}`
@@ -101,7 +108,7 @@ class Photo extends React.Component {
 			(this.state.avatar)
 			? 
 			<img alt='' className='pointer grow'
-			src = {`https://blech-task-manager.herokuapp.com/users/${user._id}/avatar`} 
+			src = {`${API_BASE_URL}/users/${user._id}/avatar`} 
 			width='300px' height='auto'
 			onClick={() => this.changePhotoToggle(true)}
 			/>
